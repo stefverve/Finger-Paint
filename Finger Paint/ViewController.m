@@ -14,7 +14,13 @@
 
 @property (weak, nonatomic) IBOutlet PaintView *paintView;
 @property (weak, nonatomic) IBOutlet UIView *paintColourView;
-@property (weak, nonatomic) IBOutlet UIView *paintBrushWidthView;
+@property (weak, nonatomic) IBOutlet UIButton *undoButton;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewWidth;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewTrailing;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewTop;
+
 
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;
 @property (weak, nonatomic) IBOutlet UISlider *greenSlider;
@@ -34,16 +40,29 @@
     [super viewDidLoad];
     self.arrayCounter = -1;
     self.currentColour = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
-    self.currentBrushSize = 10.5;
-    
-    
+    self.currentBrushSize = 25;
+    self.paintColourView.backgroundColor = self.currentColour;
+    self.paintColourView.layer.cornerRadius = self.currentBrushSize/2;
+    self.paintColourViewWidth.constant = self.currentBrushSize;
+    self.paintColourViewHeight.constant = self.currentBrushSize;
+    self.paintColourViewTop.constant = 62.5 - self.currentBrushSize/2;
+    self.paintColourViewTrailing.constant = 57.5 - self.currentBrushSize/2;
 }
 
 - (IBAction)drawColourSliderChange:(UISlider *)sender {
     self.currentColour = [UIColor colorWithRed:self.redSlider.value/255 green:self.greenSlider.value/255 blue:self.blueSlider.value/255 alpha:self.alphaSlider.value/255];
     self.paintColourView.backgroundColor = self.currentColour;
+    }
+
+- (IBAction)brushWidthChanged:(UISlider *)sender {
     self.currentBrushSize = self.brushWidthSlider.value;
+    self.paintColourView.layer.cornerRadius = sender.value/2;
+    self.paintColourViewWidth.constant = sender.value;
+    self.paintColourViewHeight.constant = sender.value;
+    self.paintColourViewTop.constant = 62.5 - sender.value/2;
+    self.paintColourViewTrailing.constant = 57.5 - sender.value/2;
 }
+
 
 - (IBAction)drawInPaintView:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
@@ -57,6 +76,11 @@
     [self.paintView setNeedsDisplay];
 }
 
+- (IBAction)undoButtonPressed:(UIButton *)sender {
+    [self.paintView.gestureCollection removeObjectAtIndex:self.paintView.gestureCollection.count - 1];
+    self.arrayCounter--;
+    [self.paintView setNeedsDisplay];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

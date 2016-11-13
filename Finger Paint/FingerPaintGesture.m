@@ -15,7 +15,7 @@
     self = [super init];
     if (self) {
         _gestureArray = [NSMutableArray new];
-        _brushSize = 10.5;
+        _brushSize = 25;
         _brushColour = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
     }
     return self;

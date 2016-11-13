@@ -30,11 +30,11 @@
                                     <outletCollection property="gestureRecognizers" destination="pbh-8l-DXg" appends="YES" id="szf-cc-bdT"/>
                                 </connections>
                             </view>
-                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10.5" minValue="1" maxValue="20" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-3z-0M0">
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="75" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-3z-0M0">
                                 <rect key="frame" x="38" y="686" width="212" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
-                                    <action selector="drawColourSliderChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="MNv-Wj-06F"/>
+                                    <action selector="brushWidthChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="RuZ-vE-Fn8"/>
                                 </connections>
                             </slider>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="127.5" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="dbf-fG-zWo">
@@ -77,18 +77,22 @@
                                     <constraint firstAttribute="height" constant="75" id="SiP-4p-rhO"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kdf-wI-IGy">
-                                <rect key="frame" x="320" y="661" width="33" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1J-wW-Jwn">
+                                <rect key="frame" x="314" y="661" width="44" height="30"/>
+                                <state key="normal" title="UNDO"/>
+                                <connections>
+                                    <action selector="undoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FDb-XH-3y8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97118398754366719" blue="0.78701816455680118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="g1J-wW-Jwn" firstAttribute="centerX" secondItem="YT8-K0-cbi" secondAttribute="centerX" id="0SQ-Fw-zpK"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5OB-Ec-ZMH" secondAttribute="bottom" constant="220" id="3ud-gX-xxD"/>
                             <constraint firstItem="YT8-K0-cbi" firstAttribute="top" secondItem="5OB-Ec-ZMH" secondAttribute="bottom" constant="30" id="5wg-44-8Hp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5OB-Ec-ZMH" secondAttribute="trailing" constant="20" id="7tt-42-Rjg"/>
                             <constraint firstItem="5OB-Ec-ZMH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="CGi-JK-oEC"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="g1J-wW-Jwn" secondAttribute="bottom" constant="45" id="lwp-uY-dPK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YT8-K0-cbi" secondAttribute="trailing" constant="20" id="mQT-J0-UVu"/>
                             <constraint firstItem="5OB-Ec-ZMH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="suK-lm-cZ7"/>
                         </constraints>
@@ -98,10 +102,14 @@
                         <outlet property="blueSlider" destination="FOi-wO-jl0" id="idH-Wm-fRO"/>
                         <outlet property="brushWidthSlider" destination="5vl-3z-0M0" id="syB-Xo-NED"/>
                         <outlet property="greenSlider" destination="mNm-nS-eMF" id="z44-7d-fRR"/>
-                        <outlet property="paintBrushWidthView" destination="Kdf-wI-IGy" id="cGt-pD-ZiT"/>
                         <outlet property="paintColourView" destination="YT8-K0-cbi" id="1Ph-dR-x3g"/>
+                        <outlet property="paintColourViewHeight" destination="SiP-4p-rhO" id="yp9-j4-6xh"/>
+                        <outlet property="paintColourViewTop" destination="5wg-44-8Hp" id="wyP-ry-44k"/>
+                        <outlet property="paintColourViewTrailing" destination="mQT-J0-UVu" id="e0V-JZ-Tpr"/>
+                        <outlet property="paintColourViewWidth" destination="0Nv-sB-MZ6" id="ccA-bH-mtg"/>
                         <outlet property="paintView" destination="5OB-Ec-ZMH" id="85k-8T-EJ0"/>
                         <outlet property="redSlider" destination="Q7k-fZ-qcq" id="lbf-ZZ-dnh"/>
+                        <outlet property="undoButton" destination="g1J-wW-Jwn" id="wi3-1t-zaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
