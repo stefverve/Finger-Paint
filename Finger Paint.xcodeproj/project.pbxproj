@@ -13,6 +13,8 @@
 		E2B9726D1DD6307500DA3E34 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B9726B1DD6307500DA3E34 /* Main.storyboard */; };
 		E2B9726F1DD6307500DA3E34 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2B9726E1DD6307500DA3E34 /* Assets.xcassets */; };
 		E2B972721DD6307500DA3E34 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2B972701DD6307500DA3E34 /* LaunchScreen.storyboard */; };
+		E2B9727B1DD6331400DA3E34 /* PaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B9727A1DD6331400DA3E34 /* PaintView.m */; };
+		E2B9727E1DD8EDA700DA3E34 /* FingerPaintGesture.m in Sources */ = {isa = PBXBuildFile; fileRef = E2B9727D1DD8EDA700DA3E34 /* FingerPaintGesture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,10 @@
 		E2B9726E1DD6307500DA3E34 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2B972711DD6307500DA3E34 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2B972731DD6307500DA3E34 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E2B972791DD6331400DA3E34 /* PaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaintView.h; sourceTree = "<group>"; };
+		E2B9727A1DD6331400DA3E34 /* PaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaintView.m; sourceTree = "<group>"; };
+		E2B9727C1DD8EDA700DA3E34 /* FingerPaintGesture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FingerPaintGesture.h; sourceTree = "<group>"; };
+		E2B9727D1DD8EDA700DA3E34 /* FingerPaintGesture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FingerPaintGesture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +68,10 @@
 				E2B972661DD6307500DA3E34 /* AppDelegate.m */,
 				E2B972681DD6307500DA3E34 /* ViewController.h */,
 				E2B972691DD6307500DA3E34 /* ViewController.m */,
+				E2B972791DD6331400DA3E34 /* PaintView.h */,
+				E2B9727A1DD6331400DA3E34 /* PaintView.m */,
+				E2B9727C1DD8EDA700DA3E34 /* FingerPaintGesture.h */,
+				E2B9727D1DD8EDA700DA3E34 /* FingerPaintGesture.m */,
 				E2B9726B1DD6307500DA3E34 /* Main.storyboard */,
 				E2B9726E1DD6307500DA3E34 /* Assets.xcassets */,
 				E2B972701DD6307500DA3E34 /* LaunchScreen.storyboard */,
@@ -110,6 +120,7 @@
 				TargetAttributes = {
 					E2B9725E1DD6307500DA3E34 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = JNQLRNGEA7;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -151,7 +162,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2B9726A1DD6307500DA3E34 /* ViewController.m in Sources */,
+				E2B9727B1DD6331400DA3E34 /* PaintView.m in Sources */,
 				E2B972671DD6307500DA3E34 /* AppDelegate.m in Sources */,
+				E2B9727E1DD8EDA700DA3E34 /* FingerPaintGesture.m in Sources */,
 				E2B972641DD6307500DA3E34 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,10 +283,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JNQLRNGEA7;
 				INFOPLIST_FILE = "Finger Paint/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LHL.Finger-Paint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -281,10 +298,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JNQLRNGEA7;
 				INFOPLIST_FILE = "Finger Paint/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "LHL.Finger-Paint";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -307,6 +328,7 @@
 				E2B972781DD6307500DA3E34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
