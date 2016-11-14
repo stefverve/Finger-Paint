@@ -21,13 +21,11 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewTrailing;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *paintColourViewTop;
 
-
 @property (weak, nonatomic) IBOutlet UISlider *redSlider;
 @property (weak, nonatomic) IBOutlet UISlider *greenSlider;
 @property (weak, nonatomic) IBOutlet UISlider *blueSlider;
 @property (weak, nonatomic) IBOutlet UISlider *alphaSlider;
 @property (weak, nonatomic) IBOutlet UISlider *brushWidthSlider;
-@property (nonatomic) int arrayCounter;
 
 @property UIColor *currentColour;
 @property NSInteger currentBrushSize;
@@ -38,7 +36,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.arrayCounter = -1;
     self.currentColour = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
     self.currentBrushSize = 25;
     self.paintColourView.backgroundColor = self.currentColour;
@@ -66,19 +63,18 @@
 
 - (IBAction)drawInPaintView:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.arrayCounter++;
         [self.paintView.gestureCollection addObject:[FingerPaintGesture new]];
-        self.paintView.gestureCollection[self.arrayCounter].brushColour = self.currentColour;
-        self.paintView.gestureCollection[self.arrayCounter].brushSize = self.currentBrushSize;
+        self.paintView.gestureCollection[self.paintView.gestureCollection.count-1].brushColour = self.currentColour;
+        self.paintView.gestureCollection[self.paintView.gestureCollection.count-1].brushSize = self.currentBrushSize;
     }
-    [self.paintView.gestureCollection[self.arrayCounter].gestureArray addObject:[NSValue valueWithCGPoint:[sender locationInView:self.paintView]]];
-//    if (sender.state == UIGestureRecognizerStateEnded) { }
+    [self.paintView.gestureCollection[self.paintView.gestureCollection.count-1].gestureArray addObject:[NSValue valueWithCGPoint:[sender locationInView:self.paintView]]];
     [self.paintView setNeedsDisplay];
 }
 
 - (IBAction)undoButtonPressed:(UIButton *)sender {
-    [self.paintView.gestureCollection removeObjectAtIndex:self.paintView.gestureCollection.count - 1];
-    self.arrayCounter--;
+    if (self.paintView.gestureCollection.count > 0) {
+        [self.paintView.gestureCollection removeObjectAtIndex:self.paintView.gestureCollection.count - 1];
+    }
     [self.paintView setNeedsDisplay];
 }
 
