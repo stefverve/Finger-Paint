@@ -12,6 +12,8 @@
 @interface PaintView : UIView
 
 @property (nonatomic) NSMutableArray <FingerPaintGesture*> * gestureCollection;
+@property (nonatomic) BOOL undo;
+@property (nonatomic) UIImage * currentImage;
 
 - (void)drawRect:(CGRect)rect;
 

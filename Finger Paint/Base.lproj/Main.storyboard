@@ -22,14 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OB-Ec-ZMH" customClass="PaintView">
-                                <rect key="frame" x="40" y="40" width="334" height="476"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="pbh-8l-DXg" appends="YES" id="szf-cc-bdT"/>
-                                </connections>
-                            </view>
                             <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="25" minValue="1" maxValue="75" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-3z-0M0">
                                 <rect key="frame" x="38" y="686" width="212" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -84,18 +76,26 @@
                                     <action selector="undoButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FDb-XH-3y8"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X27-Ic-UXH" customClass="PaintView">
+                                <rect key="frame" x="40" y="40" width="334" height="476"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.97118398754366719" blue="0.78701816455680118" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="g1J-wW-Jwn" firstAttribute="centerX" secondItem="YT8-K0-cbi" secondAttribute="centerX" id="0SQ-Fw-zpK"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5OB-Ec-ZMH" secondAttribute="bottom" constant="220" id="3ud-gX-xxD"/>
-                            <constraint firstItem="YT8-K0-cbi" firstAttribute="top" secondItem="5OB-Ec-ZMH" secondAttribute="bottom" constant="30" id="5wg-44-8Hp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5OB-Ec-ZMH" secondAttribute="trailing" constant="20" id="7tt-42-Rjg"/>
-                            <constraint firstItem="5OB-Ec-ZMH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="CGi-JK-oEC"/>
+                            <constraint firstItem="YT8-K0-cbi" firstAttribute="top" secondItem="X27-Ic-UXH" secondAttribute="bottom" constant="30" id="1wr-Lw-i35"/>
+                            <constraint firstItem="X27-Ic-UXH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="9OW-TT-7WR"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="X27-Ic-UXH" secondAttribute="bottom" constant="220" id="APN-5a-Hxn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="X27-Ic-UXH" secondAttribute="trailing" constant="20" id="Sdm-NM-O18"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="g1J-wW-Jwn" secondAttribute="bottom" constant="45" id="lwp-uY-dPK"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YT8-K0-cbi" secondAttribute="trailing" constant="20" id="mQT-J0-UVu"/>
-                            <constraint firstItem="5OB-Ec-ZMH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="suK-lm-cZ7"/>
+                            <constraint firstItem="X27-Ic-UXH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="20" id="rLN-XC-6zD"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="saI-H1-h56" appends="YES" id="Uon-1Q-VJY"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="alphaSlider" destination="dbf-fG-zWo" id="jXZ-Nd-VSq"/>
@@ -104,18 +104,18 @@
                         <outlet property="greenSlider" destination="mNm-nS-eMF" id="z44-7d-fRR"/>
                         <outlet property="paintColourView" destination="YT8-K0-cbi" id="1Ph-dR-x3g"/>
                         <outlet property="paintColourViewHeight" destination="SiP-4p-rhO" id="yp9-j4-6xh"/>
-                        <outlet property="paintColourViewTop" destination="5wg-44-8Hp" id="wyP-ry-44k"/>
+                        <outlet property="paintColourViewTop" destination="1wr-Lw-i35" id="8aO-Td-eOI"/>
                         <outlet property="paintColourViewTrailing" destination="mQT-J0-UVu" id="e0V-JZ-Tpr"/>
                         <outlet property="paintColourViewWidth" destination="0Nv-sB-MZ6" id="ccA-bH-mtg"/>
-                        <outlet property="paintView" destination="5OB-Ec-ZMH" id="85k-8T-EJ0"/>
+                        <outlet property="paintView" destination="X27-Ic-UXH" id="h0D-ID-u8s"/>
                         <outlet property="redSlider" destination="Q7k-fZ-qcq" id="lbf-ZZ-dnh"/>
                         <outlet property="undoButton" destination="g1J-wW-Jwn" id="wi3-1t-zaH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="pbh-8l-DXg">
+                <panGestureRecognizer minimumNumberOfTouches="1" id="saI-H1-h56">
                     <connections>
-                        <action selector="drawInPaintView:" destination="BYZ-38-t0r" id="zBk-9Y-GRp"/>
+                        <action selector="drawInPaintView:" destination="BYZ-38-t0r" id="yD9-bp-ZDb"/>
                     </connections>
                 </panGestureRecognizer>
             </objects>

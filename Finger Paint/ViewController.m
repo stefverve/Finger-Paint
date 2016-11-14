@@ -36,8 +36,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.currentColour = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1.0];
+    self.currentColour = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
     self.currentBrushSize = 25;
+    self.paintView.undo = NO;
     self.paintColourView.backgroundColor = self.currentColour;
     self.paintColourView.layer.cornerRadius = self.currentBrushSize/2;
     self.paintColourViewWidth.constant = self.currentBrushSize;
@@ -49,10 +50,10 @@
 - (IBAction)drawColourSliderChange:(UISlider *)sender {
     self.currentColour = [UIColor colorWithRed:self.redSlider.value/255 green:self.greenSlider.value/255 blue:self.blueSlider.value/255 alpha:self.alphaSlider.value/255];
     self.paintColourView.backgroundColor = self.currentColour;
-    }
+}
 
 - (IBAction)brushWidthChanged:(UISlider *)sender {
-    self.currentBrushSize = self.brushWidthSlider.value;
+    self.currentBrushSize = sender.value;
     self.paintColourView.layer.cornerRadius = sender.value/2;
     self.paintColourViewWidth.constant = sender.value;
     self.paintColourViewHeight.constant = sender.value;
@@ -60,9 +61,17 @@
     self.paintColourViewTrailing.constant = 57.5 - sender.value/2;
 }
 
-
 - (IBAction)drawInPaintView:(UIPanGestureRecognizer *)sender {
     if (sender.state == UIGestureRecognizerStateBegan) {
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]) {
+            UIGraphicsBeginImageContextWithOptions(self.paintView.frame.size, NO, [UIScreen mainScreen].scale);
+        } else {
+            UIGraphicsBeginImageContext(self.paintView.frame.size);
+        }
+        [self.paintView.layer renderInContext:UIGraphicsGetCurrentContext()];
+        UIImage *finalImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        self.paintView.currentImage = finalImage;
         [self.paintView.gestureCollection addObject:[FingerPaintGesture new]];
         self.paintView.gestureCollection[self.paintView.gestureCollection.count-1].brushColour = self.currentColour;
         self.paintView.gestureCollection[self.paintView.gestureCollection.count-1].brushSize = self.currentBrushSize;
@@ -72,6 +81,7 @@
 }
 
 - (IBAction)undoButtonPressed:(UIButton *)sender {
+    self.paintView.undo = YES;
     if (self.paintView.gestureCollection.count > 0) {
         [self.paintView.gestureCollection removeObjectAtIndex:self.paintView.gestureCollection.count - 1];
     }
